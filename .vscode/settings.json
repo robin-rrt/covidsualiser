@@ -1,0 +1,9 @@
+{
+    "python.pythonPath": "c:\\Users\\robin\\Desktop\\Coding\\CS50\\Final Project - COVIDSUALISER\\.venv\\Scripts\\python.exe",
+    "python.testing.pytestArgs": [
+        "__pycache__"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
+}

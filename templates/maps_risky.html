@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- documentation at http://getbootstrap.com/docs/4.1/, alternative themes at https://bootswatch.com/ -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- https://favicon.io/emoji-favicons/globe-with-meridians-->
+    <link href=".\static\favicon.ico" rel="icon">
+
+    <link href=".\static\style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src= ".\static\js\checkbox.js" type="text/javascript" ></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+        #map {
+            height: 80%;
+          }
+          html,
+          body {
+            height: 100%;
+            margin: 2%;
+            padding: 0;
+          }
+        </style>
+    <div id='map'></div>
+    <script>
+
+       
+        var locations_risk = {{locations_risk|safe}};
+        console.log(locations_risk); 
+
+
+        function getColor(riskScore) {
+          if (riskScore <= 3) 
+          {
+            return "#15ff00";
+            
+          }
+          else if (riskScore > 3 && riskScore <= 7 )
+          {
+            return "orange";
+          }
+          else {
+            return "red";
+          } 
+        }
+        
+        //list or array of latitudes
+        var locations_lat = {{locations_lat|safe}};
+        //array of longitudes
+        var locations_lng = {{locations_lng|safe}};
+
+        var user_lat = {{user_lat|safe}}; 
+        var user_lng = {{user_lng|safe}};
+
+        /*Remove the use of token later on*/
+        mapboxgl.accessToken = 'pk.eyJ1Ijoicm9iaW4tcnJ0IiwiYSI6ImNrazd0ZDBzczBlOW4yb21zaDFwdTNreXoifQ.garcYw2-zZ93JVrTTz9Xiw';
+        var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        center: [user_lng, user_lat], // starting position
+        zoom: 10, // starting zoom
+        });
+        
+        for(var i = 0; i < locations_lat.length; i++)
+        {
+          var marker = new mapboxgl.Marker({color: getColor(locations_risk[i])}).setLngLat([locations_lng[i], locations_lat[i]]).addTo(map);
+        }
+        
+         </script>   
+</head>
+<body style="background:#0245a8;">
+  <div class = "box orange">
+    <h2 class = score>Risk to Others: Elevated</h2>
+    <br>
+    <br>
+    <p class = description>
+      Your risk of transmitting SARS-Cov-2 to other people is <b>Elevated.</b>
+      <br>
+      Please do not go to work today and reassess your risk of spreading SARS-CoV-2 in three days.
+    </p>
+  </div>
+  <div>
+    <p style = "color: white; font-style: italic;"> 
+      Privacy: Your answers never leave your device. We calculate your risks without seeing your answers 
+    </p>
+  </div>
+  <br>
+</body>
+</html>

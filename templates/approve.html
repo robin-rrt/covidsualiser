@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- documentation at http://getbootstrap.com/docs/4.1/, alternative themes at https://bootswatch.com/ -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- https://favicon.io/emoji-favicons/globe-with-meridians-->
+    <link href=".\static\favicon.ico" rel="icon">
+
+    <link href=".\static\style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src= ".\static\js\checkbox.js" type="text/javascript" ></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- <script>
+        function approval
+    </script> -->
+    
+</head>
+<body class = "info text-white" style="background:#0245a8; text-align: center;" >
+    <header>
+        COVIDSUALIZER
+    </header>
+    <br><br>
+    <p>
+        COVIDSUALISER is a COVID-19 Health and Risk Tracker. It was created as an effort to visualize how much risk one 
+        possesses to spread COVID-19 based on their symptoms and other information. 
+        The application uses a Flask server to run and uses a couple of 3rd party APIs for some functionality.
+    </p>
+    <br>
+    <p>
+        The application conducts a small survey regarding your health and internally computes your <b>RISK SCORE</b> 
+        which is then displayed on a Map, along with the locations of other users who took the survey in the past 14 days, 
+        along with their <b>RISK SCORE</b> s which is correlated with a color code.
+    </p>
+    <br>
+    <ul style="text-align: left;">
+       <li>RED markers mean HIGH RISK </li>
+       <li>ORANGE markers mean ELEVATED RISK</li>
+       <li>GREEN markers mean NORMAL RISK</li>
+    </ul>
+    <br>
+    <h5 class ="text-white">By clicking AGREE, you consent to your location being collected for the proper functioning of this application.</h5>
+    
+    <form method = "POST" action = '/approve' >
+        <div id ="div-approve">
+        <button type="submit" id="button-approve">AGREE</button>
+        </div>
+    </form>
+    <br>
+    <h6 class="text-white">Click "AGREE" to see COVID-19 cases and risk analysis in your region.</h4>
+</body>
+</html>
