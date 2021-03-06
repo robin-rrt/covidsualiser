@@ -18,6 +18,7 @@ app = Flask(__name__)
 # Ensure templates are auto-reloade
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
+
 # Ensure responses aren't cached
 @app.after_request
 def after_request(response):
@@ -46,15 +47,11 @@ else:
     MAP_KEY = os.environ.get("MAP_KEY")
 
 print("Connection to Database successful")
-#get GEOAPI_KEY from WHOISXMLAPI
-url = f"https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey={os.environ.get('GEOAPI_KEY')}"
-r = requests.get(url)
-j = json.loads(r.text)
-lat = j['location']['lat']
-lng = j['location']['lng']
 
-headers = request.headers["x-forwarded-for"]
-print(headers)
+lat = ""
+lng = ""
+real_ip = ""
+
 
 def approval_required(f):
     """
@@ -74,14 +71,40 @@ def approval_required(f):
 def form():
 
     if request.method == "POST":
+
         with sqlite3.connect("location.sqlite") as database: #COnnecting to Database
             db = database.cursor()
-            print(session["approved"])
+
+            '''
+            '''
+            global real_ip
+            try:
+                real_ip = request.headers['HTTP_X_FORWARDED_FOR']
+            except KeyError:
+                pass
+            else:
+                # HTTP_X_FORWARDED_FOR can be a comma-separated list of IPs.
+                # Take just the first one.
+                real_ip_list = real_ip.split(",")
+                real_ip = real_ip_list[real_ip_list.length - 1]
+                request.headers['REMOTE_ADDR'] = real_ip
+
+            #get GEOAPI_KEY from WHOISXMLAPI
+            r = requests.get(f"https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey={os.environ.get('GEOAPI_KEY')}&ipAddress={real_ip}")
+            j = json.loads(r.text)
+            global lat
+            global lng
+            lat = j['location']['lat']
+            lng = j['location']['lng']
+            print(lat, lng)
+            '''
+            '''
 
             symptoms = request.values.getlist("symptom") #gets symptoms values from form.html in a list
             vaccine = request.values.get("vaccine") #gets vaccine values from form.html
             covidTest = request.values.get("covidTest") #gets covidtest values from form.html
             riskFactor = 0 #initialize the Risk Factor
+            
 
             #adds all the values/scores from the form.html and is then converted into a risk scoring for COVID 19 based on data.
             if covidTest is None:  #Converts None from covidTest to 0 to avoid errors during addition
@@ -109,8 +132,6 @@ def maps():
         db = database.cursor()
         #select all locations from database from within 2 weeks ago
         locationsCursor = db.execute("SELECT lat, lng, risk FROM location WHERE julianday('now') - julianday(date) <= 14 ;")
-        print(session["approved"])
-        print(locationsCursor)
         #iniate to lists for lat and lng to be sent to HTML & JS
         locations_lat = list()
         locations_lng = list()
