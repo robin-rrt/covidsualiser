@@ -53,6 +53,9 @@ j = json.loads(r.text)
 lat = j['location']['lat']
 lng = j['location']['lng']
 
+headers = request.headers["x-forwarded-for"]
+print(headers)
+
 def approval_required(f):
     """
     Decorate routes to require login.
