@@ -20,15 +20,13 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' rel='stylesheet' />
 
-    <!-- <script>
-        function approval
-    </script> -->
     
 </head>
-<header>
-    COVIDSUALIZER
-</header>
-<body class = "info text-white" style="background:#0245a8; text-align: center;" >
+
+<body class = "info text-white" style="background:#0245a8; text-align: justify;" >
+    <header id="heading-approve">
+        COVIDSUALIZER
+    </header>
     <br><br>
     <p>
         COVIDSUALISER is a COVID-19 Health and Risk Tracker. It was created as an effort to visualize how much risk one 
@@ -48,14 +46,14 @@
        <li>GREEN markers mean NORMAL RISK</li>
     </ul>
     <br>
-    <h5 class ="text-white">By clicking AGREE, you consent to your location being collected for the proper functioning of this application.</h5>
+    <h5 class ="text-white" style="text-align: center;">By clicking AGREE, you consent to your location being collected for the proper functioning of this application.</h5>
     
     <form method = "POST" action = '/approve' >
         <div id ="div-approve">
-        <button type="submit" id="button-approve">AGREE</button>
+            <input class = "button-approve" name="form" type="submit" value="Agree">
         </div>
     </form>
     <br>
-    <h6 class="text-white">Click "AGREE" to see COVID-19 cases and risk analysis in your region.</h4>
+    <h6 class="text-white" style="text-align: center;">Click "AGREE" to see COVID-19 cases and risk analysis in your region.</h4>
 </body>
 </html>

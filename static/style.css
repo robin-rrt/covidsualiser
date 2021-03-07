@@ -13,7 +13,7 @@
     text-align: center;
     font-family: 'Montserrat';
     font-weight: bold;
-    font-size: 72px;
+    font-size: 3rem;
     color: white;
   }
   
@@ -206,6 +206,7 @@
 
   #div-approve {
     text-align: center;
+    padding-top: 10px;
   }
 
   #button-approve {
@@ -215,8 +216,28 @@
   }
 
   .info {
-    padding-left: 33%;
-    padding-right: 33%;
+    padding-left: 10%;
+    padding-right: 10%;
     /* margin-left: 4rem;
     margin-right: 4rem; */
   }
+
+  input[type=submit] {
+    background-color:transparent;
+    border:rgb(215, 243, 215) solid;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+
+
+  input[type=submit]:hover {
+    background-image: linear-gradient(30deg, #8a7d08, #b3d12f);
+    color: rgba(255, 255, 255, .9);
+  }
+
+  /* #heading-approve {
+    font-size: 250%;
+  } */

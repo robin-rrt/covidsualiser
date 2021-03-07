@@ -34,12 +34,10 @@ COVIDSUALIZER
   <article>
   <div class="container">
     <form method="POST" name = "form1" action="/">
-  <table>
-   
    <tr>
-	
  </tr>
  <td>Gender<span style = "color: red;">*</span></td>
+ <br>
  <td>
  <ul class="static/ks-cboxtags ss-item-required" name = "MorF">
  <li><input type="checkbox" id="male"  onclick="gender(0)" name = "MorF"><label for="checkboxmale"  >Male</label></li>
@@ -53,7 +51,8 @@ COVIDSUALIZER
 	
     </tr>
     <td>What are your symptoms?<span style = "color: red;">*</span></td>
-	<td>
+	  <br>
+    <td>
     <ul class="ks-cboxtags ss-item-required" name = "symptom">
 	<li><input type="checkbox" id="checkboxzero" value="0" name = "symptom" onclick="symptoms(0)"><label for="checkboxzero">No Symptoms</label></li>
     <li><input type="checkbox" id="checkboxOne" value="6" name = "symptom"onclick="symptoms(1)"><label for="checkboxOne">Fever</label></li>
@@ -77,7 +76,7 @@ COVIDSUALIZER
   
   <tr>
   <td>Have you been vaccinated<span style = "color: red;">*</span></td>
-  <td>
+  <br><td>
    <ul class="ks-cboxtags ss-item-required" name = "vaccine">
    <li><input type="checkbox" id="checkboxyes" value="-3" name = "vaccine" onclick = "vaccines(0)"><label for="checkboxyes">Yes</label></li>
    <li><input type="checkbox" id="checkboxno" value="0" name = "vaccine" onclick = "vaccines(1)"><label for="checkboxno" >No</label></li>
@@ -87,17 +86,14 @@ COVIDSUALIZER
 
   <tr>
     <td>If you've taken a COVID-19 test in the last 2 weeks, what was the result?</td>
-    <td>
+    <br><td>
      <ul class="ks-cboxtags ss-item-not-required" name = "covidTest">
      <li><input type="checkbox" id="checkboxPositive" value="10" name = "covidTest" onclick = "covidTests(0)"><label for="checkboxPositive">COVID Positive</label></li>
      <li><input type="checkbox" id="checkboxNegative" value="-2" name = "covidTest" onclick = "covidTests(1)"><label for="checkboxNegative" >COVID Negative</label></li>
-     <li><input type="checkbox" id="checkboxFamily" value="4"  name = "covidTest" onclick = "covidTests(2)"><label for="checkboxFamily">Someone else in my household is COVID Positive</label></li>
+     <li><input type="checkbox" id="checkboxFamily" value="4"  name = "covidTest" onclick = "covidTests(2)"><label for="checkboxFamily">Someone I live with/met has COVID</label></li>
       
     </ul>
     </td>
-    <p style = "font-style: italic;">
-      Note: On clicking "Submit", you will be asked to give access to your location. Please Click "Allow" to see COVID-19 cases and risk in your region.
-    </p>
     </tr>
    
   <tr>
@@ -105,13 +101,10 @@ COVIDSUALIZER
   <div>
     
     <button onclick = "required();" type="submit" ><span>Submit</span></button>
-    <p style = "font-style: italic;">
-      Note: On clicking "Submit", you will be asked to give access to your location. Please Click "Allow" to see COVID-19 cases and risk analysis in your region.
-    </p>
   </div></td>
   </tr>
    <td>
-  </table>
+
  </form>
  </div>
   </article>
